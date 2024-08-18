@@ -3,8 +3,6 @@ import numpy as np
 import pandas as pd
 import pickle
 import os
-import matplotlib.pyplot as plt
-import seaborn as sns
 
 # Load the dataset
 df = pd.read_csv('Crop_recommendation.csv')
@@ -161,35 +159,7 @@ def main():
             
             # Show crop image if available
             show_crop_image(crop)
-            
-            # Visualization: Bar chart of nutrient levels
-            st.subheader("Nutrient Levels")
-            fig, ax = plt.subplots()
-            ax.bar(['Nitrogen', 'Phosphorus', 'Potassium'], [nitrogen, phosphorus, potassium], color=['#FF6347', '#FFD700', '#32CD32'])
-            ax.set_ylabel('Level')
-            ax.set_title('Nutrient Levels for Recommended Crop')
-            st.pyplot(fig)
-            
-            # Visualization: Pie chart of crop distribution in the dataset
-            st.subheader("Crop Distribution in Dataset")
-            crop_counts = df['label'].value_counts()
-            fig2, ax2 = plt.subplots()
-                       # Continue with the pie chart visualization
-            ax2.pie(crop_counts, labels=crop_counts.index, autopct='%1.1f%%', startangle=140, colors=sns.color_palette('pastel'))
-            ax2.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
-            st.pyplot(fig2)
-
-            # Visualization: Scatter plot for environmental factors
-            st.subheader("Environmental Factors vs Recommended Crop")
-            fig3, ax3 = plt.subplots()
-            sns.scatterplot(x=df['temperature'], y=df['humidity'], hue=df['label'], ax=ax3)
-            ax3.scatter(temperature, humidity, color='red')  # Highlight the input values
-            ax3.set_xlabel('Temperature (°C)')
-            ax3.set_ylabel('Humidity (%)')
-            ax3.set_title('Temperature vs Humidity')
-            st.pyplot(fig3)
 
 # Run the web app
 if __name__ == '__main__':
     main()
-
