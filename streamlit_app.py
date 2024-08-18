@@ -214,11 +214,7 @@ def main():
             crop_details = get_crop_info(crop)
 
             # Display the crop image after prediction
-            try:
-                st.image(crop_details['image'], caption=f"Predicted Crop: {crop.capitalize()}", use_column_width=True)
-            except Exception as e:
-                st.error("Error loading crop image.")
-                st.write(str(e))
+           
 
             # Display crop and fertilizer recommendations in a card
             st.markdown('<div class="card">', unsafe_allow_html=True)
