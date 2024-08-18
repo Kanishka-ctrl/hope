@@ -70,24 +70,53 @@ def predict_crop(nitrogen, phosphorus, potassium, temperature, humidity, ph, rai
     prediction = RF_Model_pkl.predict(np.array([nitrogen, phosphorus, potassium, temperature, humidity, ph, rainfall]).reshape(1, -1))
     return prediction[0]
 
-# Function to get online image of the predicted crop
-def get_online_image(crop_name):
-    crop_images = {
-        'rice': 'https://www.pexels.com/photo/close-up-photo-of-white-rice-grains-4110251/',  # Replace with a 4K image URL
-        'maize': 'https://www.pexels.com/photo/person-holding-corn-from-its-tree-3307282/',  # Replace with a 4K image URL
-        'chickpea': 'https://images.unsplash.com/photo-1596188771903-b16e49d5b4e1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',  # Replace with a 4K image URL
-        'kidneybeans': 'https://images.unsplash.com/photo-1582227257150-7a2202d0d081?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',  # Replace with a 4K image URL
-        'pigeonpeas': 'https://images.unsplash.com/photo-1569159585160-381fdf6fce9b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',  # Replace with a 4K image URL
-        # Add more crops and URLs as needed
-    }
-    return crop_images.get(crop_name.lower(), 'https://via.placeholder.com/150')  # Placeholder for unknown crops
-
 # Streamlit Web App
 def main():
     st.set_page_config(page_title="Smart Crop and Fertilizer Recommendations", layout="wide")
 
-    # Display the initial background image before prediction
-    st.image("image.png", use_column_width=True)  # Display the uploaded image as the background before prediction
+    # Set a general background image
+    page_bg_img = '''
+    <style>
+    .stApp {
+        background-image: url("crop.jpg"); /* Use the local image file */
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    .sidebar .sidebar-content {
+        background-color: rgba(0, 0, 0, 0.6); /* Add transparency */
+        padding: 20px;
+        border-radius: 10px;
+    }
+    .st-header, .st-subheader {
+        text-shadow: 2px 2px 5px #000;
+    }
+    .stNumberInput>div>div>input {
+        background-color: rgba(255, 255, 255, 0.7);
+        color: #333;
+        border-radius: 5px;
+    }
+    .stButton>button {
+        background-color: #4CAF50;
+        color: white;
+        border-radius: 5px;
+        font-size: 1rem;
+        padding: 10px;
+        border: none;
+    }
+    .stButton>button:hover {
+        background-color: #45a049;
+    }
+    .card {
+        background-color: rgba(255, 255, 255, 0.85);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    }
+    </style>
+    '''
+    st.markdown(page_bg_img, unsafe_allow_html=True)
 
     # Sidebar for inputs
     st.sidebar.header("Enter Crop Details")
@@ -106,8 +135,8 @@ def main():
         else:
             crop = predict_crop(nitrogen, phosphorus, potassium, temperature, humidity, ph, rainfall)
             
-            # Display the online crop image after prediction
-            st.image(get_online_image(crop), caption=f"Predicted Crop: {crop.capitalize()}", use_column_width=True)
+            # Display crop image using the local 'crop.jpg' file
+            st.image("crop.jpg", caption=f"Predicted Crop: {crop.capitalize()}", use_column_width=True)
 
             # Display crop and fertilizer recommendations in a card
             st.markdown('<div class="card">', unsafe_allow_html=True)
@@ -124,31 +153,12 @@ def main():
             st.write(rotation_tips)
             st.markdown('</div>', unsafe_allow_html=True)
 
-            # Visualization: Bar chart of nutrient levels
-            st.markdown('<div class="card">', unsafe_allow_html=True)
-            st.subheader("Nutrient Levels")
-            fig, ax = plt.subplots()
-            ax.bar(['Nitrogen', 'Phosphorus', 'Potassium'], [nitrogen, phosphorus, potassium], color=['#FF6347', '#FFD700', '#32CD32'])
-            ax.set_ylabel('Level')
-            ax.set_title('Nutrient Levels for Recommended Crop')
-            st.pyplot(fig)
-            st.markdown('</div>', unsafe_allow_html=True)
-            st.markdown('</div>', unsafe_allow_html=True)
+           
+            
+           
 
-            # Visualization: Scatter plot for environmental factors
-            st.markdown('<div class="card">', unsafe_allow_html=True)
-            st.subheader("Environmental Factors vs Recommended Crop")
-            fig3, ax3 = plt.subplots()
-            sns.scatterplot(x=df['temperature'], y=df['humidity'], hue=df['label'], ax=ax3, palette='coolwarm')
-            ax3.scatter(temperature, humidity, color='red', s=100)  # Highlight the input values with a larger red dot
-            ax3.set_xlabel('Temperature (°C)')
-            ax3.set_ylabel('Humidity (%)')
-            ax3.set_title('Temperature vs Humidity')
-            st.pyplot(fig3)
-            st.markdown('</div>', unsafe_allow_html=True)
+            
 
 # Run the web app
 if __name__ == '__main__':
     main()
-
-    
