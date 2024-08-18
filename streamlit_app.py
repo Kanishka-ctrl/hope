@@ -66,31 +66,30 @@ def predict_crop(nitrogen, phosphorus, potassium, temperature, humidity, ph, rai
     prediction = RF_Model_pkl.predict(np.array([nitrogen, phosphorus, potassium, temperature, humidity, ph, rainfall]).reshape(1, -1))
     return prediction[0]
 
-# Function to load and display an image of the predicted crop
-def show_crop_image(crop_name):
-    image_path = os.path.join('crop_images', crop_name.lower()+'.jpg')
-    if os.path.exists(image_path):
-        st.image(image_path, caption=f"Recommended crop: {crop_name.capitalize()}", use_column_width=True)
-    else:
-        st.warning("Image not found for the predicted crop.")
-
-# Function to get crop rotation tips
-def get_crop_rotation_tips(crop):
-    return crop_rotation_tips.get(crop, crop_rotation_tips['default'])
+# Function to get online image of the predicted crop
+def get_online_image(crop_name):
+    crop_images = {
+        'rice': 'https://example.com/rice.jpg',
+        'maize': 'https://example.com/maize.jpg',
+        'chickpea': 'https://example.com/chickpea.jpg',
+        'kidneybeans': 'https://example.com/kidneybeans.jpg',
+        'pigeonpeas': 'https://example.com/pigeonpeas.jpg',
+        # Add more crops and URLs as needed
+    }
+    return crop_images.get(crop_name.lower(), 'https://example.com/default.jpg')
 
 # Streamlit Web App
 def main():
     st.set_page_config(page_title="Smart Crop and Fertilizer Recommendations", layout="wide")
 
-    # Set background image
+    # Set a general background image
     page_bg_img = '''
     <style>
     .stApp {
-        background-image: url("https://www.example.com/path_to_your_background_image.jpg");  /* Use the actual URL or local path */
+        background-image: url("https://via.placeholder.com/1920x1080"); /* Replace with your background image URL */
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
-        color: white;
     }
     .sidebar .sidebar-content {
         background-color: rgba(0, 0, 0, 0.6); /* Add transparency */
@@ -116,6 +115,13 @@ def main():
     .stButton>button:hover {
         background-color: #45a049;
     }
+    .card {
+        background-color: rgba(255, 255, 255, 0.85);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    }
     </style>
     '''
     st.markdown(page_bg_img, unsafe_allow_html=True)
@@ -137,46 +143,59 @@ def main():
         else:
             crop = predict_crop(nitrogen, phosphorus, potassium, temperature, humidity, ph, rainfall)
             
-            # Display crop and fertilizer recommendations
+            # Display crop image
+            st.image(get_online_image(crop), caption=f"Predicted Crop: {crop.capitalize()}", use_column_width=True)
+
+            # Display crop and fertilizer recommendations in a card
+            st.markdown('<div class="card">', unsafe_allow_html=True)
             st.header(f"Recommended Crop: {crop.capitalize()}")
             st.subheader("Fertilizer Recommendation")
             fertilizer = fertilizer_recommendation(crop, nitrogen, phosphorus, potassium)
             st.write(fertilizer)
+            st.markdown('</div>', unsafe_allow_html=True)
             
-            # Display Crop Rotation Tips
+            # Display Crop Rotation Tips in a card
+            st.markdown('<div class="card">', unsafe_allow_html=True)
             st.subheader("Crop Rotation Tips")
             rotation_tips = get_crop_rotation_tips(crop)
             st.write(rotation_tips)
-            
-            # Show crop image if available
-            show_crop_image(crop)
-            
+            st.markdown('</div>', unsafe_allow_html=True)
+
             # Visualization: Bar chart of nutrient levels
+            st.markdown('<div class="card">', unsafe_allow_html=True)
             st.subheader("Nutrient Levels")
             fig, ax = plt.subplots()
             ax.bar(['Nitrogen', 'Phosphorus', 'Potassium'], [nitrogen, phosphorus, potassium], color=['#FF6347', '#FFD700', '#32CD32'])
             ax.set_ylabel('Level')
             ax.set_title('Nutrient Levels for Recommended Crop')
             st.pyplot(fig)
+            st.markdown('</div>', unsafe_allow_html=True)
             
             # Visualization: Pie chart of crop distribution in the dataset
+            st.markdown('<div class="card">', unsafe_allow_html=True)
             st.subheader("Crop Distribution in Dataset")
             crop_counts = df['label'].value_counts()
             fig2, ax2 = plt.subplots()
+                        # Continue with the pie chart visualization
             ax2.pie(crop_counts, labels=crop_counts.index, autopct='%1.1f%%', startangle=140, colors=sns.color_palette('pastel'))
             ax2.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
             st.pyplot(fig2)
+            st.markdown('</div>', unsafe_allow_html=True)
 
             # Visualization: Scatter plot for environmental factors
+            st.markdown('<div class="card">', unsafe_allow_html=True)
             st.subheader("Environmental Factors vs Recommended Crop")
             fig3, ax3 = plt.subplots()
-            sns.scatterplot(x=df['temperature'], y=df['humidity'], hue=df['label'], ax=ax3)
-            ax3.scatter(temperature, humidity, color='red')  # Highlight the input values
+            sns.scatterplot(x=df['temperature'], y=df['humidity'], hue=df['label'], ax=ax3, palette='coolwarm')
+            ax3.scatter(temperature, humidity, color='red', s=100)  # Highlight the input values with a larger red dot
             ax3.set_xlabel('Temperature (°C)')
             ax3.set_ylabel('Humidity (%)')
             ax3.set_title('Temperature vs Humidity')
             st.pyplot(fig3)
+            st.markdown('</div>', unsafe_allow_html=True)
 
 # Run the web app
 if __name__ == '__main__':
     main()
+
+  
