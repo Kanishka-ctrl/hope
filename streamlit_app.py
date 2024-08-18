@@ -61,6 +61,10 @@ crop_rotation_tips = {
     'default': "Consider rotating with a legume or cereal crop to maintain soil health."
 }
 
+# Function to get crop rotation tips
+def get_crop_rotation_tips(crop):
+    return crop_rotation_tips.get(crop.lower(), crop_rotation_tips['default'])
+
 # Function to predict crop
 def predict_crop(nitrogen, phosphorus, potassium, temperature, humidity, ph, rainfall):
     prediction = RF_Model_pkl.predict(np.array([nitrogen, phosphorus, potassium, temperature, humidity, ph, rainfall]).reshape(1, -1))
@@ -177,8 +181,6 @@ def main():
             ax3.scatter(temperature, humidity, color='red', s=100)  # Highlight the input values with a larger red dot
             ax3.set_xlabel('Temperature (°C)')
             ax3.set_ylabel('Humidity (%)')
-            ax3.set_xlabel('Temperature (°C)')
-            ax3.set_ylabel('Humidity (%)')
             ax3.set_title('Temperature vs Humidity')
             st.pyplot(fig3)
             st.markdown('</div>', unsafe_allow_html=True)
@@ -186,3 +188,5 @@ def main():
 # Run the web app
 if __name__ == '__main__':
     main()
+
+       
