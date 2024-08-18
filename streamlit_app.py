@@ -86,7 +86,7 @@ def main():
     page_bg_img = '''
     <style>
     .stApp {
-        background-image: url("https://via.placeholder.com/1920x1080"); /* Replace with your background image URL */
+        background-image: url("crop.jpg"); /* Replace with your background image URL */
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
