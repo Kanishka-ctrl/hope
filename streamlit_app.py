@@ -36,134 +36,134 @@ crop_info = {
         'season': 'Kharif (June to November)',
         'regions': 'West Bengal, Punjab, Uttar Pradesh, Bihar',
         'soil': 'Clayey soil, Loamy soil',
-        'image': 'https://www.pexels.com/photo/close-up-photo-of-white-rice-grains-4110251/'
+        # 'image': 'https://images.unsplash.com/photo-1574180045827-681f8a1a9622?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'
     },
     'maize': {
         'season': 'Kharif (June to October), Rabi (November to February)',
         'regions': 'Karnataka, Maharashtra, Madhya Pradesh, Uttar Pradesh',
         'soil': 'Well-drained fertile soil, Sandy loam soil',
-        'image': 'https://www.pexels.com/photo/person-holding-corn-from-its-tree-3307282/'
+        # 'image': 'https://images.unsplash.com/photo-1600369677897-6d414d933dc1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'
     },
     'chickpea': {
         'season': 'Rabi (October to March)',
         'regions': 'Madhya Pradesh, Maharashtra, Rajasthan, Uttar Pradesh',
         'soil': 'Well-drained loamy soil, Sandy loam soil',
-        'image': 'https://harvesttotable.com/wp-content/uploads/2009/04/Chickpeas-bigstock-Fresh-Green-Chickpeas-Field-337227136-scaled-1024x683.jpg'
+        # 'image': 'https://images.unsplash.com/photo-1596188771903-b16e49d5b4e1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'
     },
     'kidneybeans': {
         'season': 'Kharif (June to October)',
         'regions': 'Uttarakhand, Himachal Pradesh, Jammu & Kashmir',
         'soil': 'Loamy soil, Sandy loam soil',
-        'image': 'https://www.pexels.com/photo/wooden-bowl-of-brown-kidney-beans-on-a-table-18233225/'
+        # 'image': 'https://images.unsplash.com/photo-1582227257150-7a2202d0d081?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'
     },
     'pigeonpeas': {
         'season': 'Kharif (June to October)',
         'regions': 'Maharashtra, Uttar Pradesh, Madhya Pradesh, Karnataka',
         'soil': 'Well-drained loamy soil',
-        'image': 'https://th.bing.com/th/id/OIP.LrzXYTsEDQyICA1XeTJbrAHaEK?rs=1&pid=ImgDetMain'
+        # 'image': 'https://images.unsplash.com/photo-1569159585160-381fdf6fce9b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'
     },
     'mothbeans': {
         'season': 'Kharif (June to September)',
         'regions': 'Rajasthan, Maharashtra, Gujarat, Haryana',
         'soil': 'Sandy loam soil',
-        'image': 'https://media.istockphoto.com/id/466255398/photo/moth-beans-background.jpg?s=612x612&w=0&k=20&c=xLp23CNioXUSRh_HDlGj6Z0-zssGlD8UqysckgWgAKM='  # Replace with an actual image URL
+        # 'image': 'https://example.com/mothbeans.jpg'  # Replace with an actual image URL
     },
     'mungbean': {
         'season': 'Kharif (June to October), Rabi (March to June)',
         'regions': 'Maharashtra, Andhra Pradesh, Rajasthan, Karnataka',
         'soil': 'Loamy soil, Sandy loam soil',
-        'image': 'https://149366112.v2.pressablecdn.com/wp-content/uploads/2018/10/mung-beans-390724_1920.jpg'  # Replace with an actual image URL
+        # 'image': 'https://example.com/mungbean.jpg'  # Replace with an actual image URL
     },
     'blackgram': {
         'season': 'Kharif (June to October), Rabi (November to March)',
         'regions': 'Maharashtra, Andhra Pradesh, Uttar Pradesh, Madhya Pradesh',
         'soil': 'Loamy soil, Sandy soil',
-        'image': 'https://www.bing.com/ck/a?!&&p=28acd41b2bac0ccb1badea0404b9be39c285fa59ba82cc0b53a9fec177565d6eJmltdHM9MTcyMzkzOTIwMCZpZ3VpZD0yNWE5OGFhYy1lMjdmLTY0N2EtMTFkMy05ZTEzZTM3OTY1YjYmaW5zaWQ9NTU4Ng&ptn=3&ver=2&hsh=4&fclid=25a98aac-e27f-647a-11d3-9e13e37965b6&u=a1L2ltYWdlcy9zZWFyY2g_cT1ibGFja2dyYW0lMjBpbWFnZSUyMDRrJkZPUk09SVFGUkJBJmlkPUFFQjc2OTkzNDI1REI5Q0FCREI5MkJBNzQ5RENCQjg3NzNCMkQ0ODg&ntb=1'  # Replace with an actual image URL
+        # 'image': 'https://example.com/blackgram.jpg'  # Replace with an actual image URL
     },
     'lentil': {
         'season': 'Rabi (November to March)',
         'regions': 'Madhya Pradesh, Uttar Pradesh, Bihar, Rajasthan',
         'soil': 'Loamy soil, Clayey soil',
-        'image': 'https://www.bing.com/images/search?view=detailV2&ccid=u9NnikAq&id=B74642D34740661ED97E4027026AB4CB74F1B793&thid=OIP.u9NnikAqO7IBOPrV3FME_QHaE8&mediaurl=https%3a%2f%2fc1.wallpaperflare.com%2fpreview%2f879%2f102%2f375%2fchana-daal-lentils-indian.jpg&exph=607&expw=910&q=lentil+image+4k&simid=608004869829381599&FORM=IRPRST&ck=571319BDC9246540EE37826554051910&selectedIndex=8&itb=0'  # Replace with an actual image URL
+        # 'image': 'https://example.com/lentil.jpg'  # Replace with an actual image URL
     },
     'pomegranate': {
         'season': 'June to September',
         'regions': 'Maharashtra, Gujarat, Rajasthan, Karnataka',
         'soil': 'Well-drained loamy soil',
-        'image': 'https://www.pexels.com/photo/red-round-fruit-65256/'  # Replace with an actual image URL
+        # 'image': 'https://example.com/pomegranate.jpg'  # Replace with an actual image URL
     },
     'banana': {
         'season': 'Throughout the year',
         'regions': 'Tamil Nadu, Maharashtra, Andhra Pradesh, Gujarat',
         'soil': 'Loamy soil, Alluvial soil',
-        'image': 'https://www.pexels.com/photo/banana-tree-802783/'  # Replace with an actual image URL
+        # 'image': 'https://example.com/banana.jpg'  # Replace with an actual image URL
     },
     'mango': {
         'season': 'Summer (March to June)',
         'regions': 'Uttar Pradesh, Andhra Pradesh, Maharashtra, Karnataka',
         'soil': 'Well-drained loamy soil, Alluvial soil',
-        'image': 'https://th.bing.com/th/id/OIP.Q9RjS1V0q0xFtQMFF_kBkQHaE7?rs=1&pid=ImgDetMain'  # Replace with an actual image URL
+        # 'image': 'https://example.com/mango.jpg'  # Replace with an actual image URL
     },
     'grapes': {
         'season': 'Winter (December to February)',
         'regions': 'Maharashtra, Karnataka, Tamil Nadu, Andhra Pradesh',
         'soil': 'Sandy loam soil, Clayey soil',
-        'image': 'https://www.pexels.com/photo/green-grapes-60021/'  # Replace with an actual image URL
+        # 'image': 'https://example.com/grapes.jpg'  # Replace with an actual image URL
     },
     'watermelon': {
         'season': 'Summer (March to June)',
         'regions': 'Uttar Pradesh, Punjab, Haryana, Madhya Pradesh',
         'soil': 'Sandy loam soil, Alluvial soil',
-        'image': 'https://th.bing.com/th/id/OIP.B5cF-j2I3zwSFxtIhHfLLgHaFj?rs=1&pid=ImgDetMain'  # Replace with an actual image URL
+        # 'image': 'https://example.com/watermelon.jpg'  # Replace with an actual image URL
     },
     'muskmelon': {
         'season': 'Summer (March to June)',
         'regions': 'Uttar Pradesh, Punjab, Haryana, Rajasthan',
         'soil': 'Sandy loam soil, Alluvial soil',
-        'image': 'https://wallpapercave.com/wp/wp9785653.jpg'  # Replace with an actual image URL
+        # 'image': 'https://example.com/muskmelon.jpg'  # Replace with an actual image URL
     },
     'apple': {
         'season': 'Autumn (September to November)',
         'regions': 'Jammu & Kashmir, Himachal Pradesh, Uttarakhand',
         'soil': 'Well-drained loamy soil',
-        'image': 'https://www.pexels.com/photo/red-apples-635705/'  # Replace with an actual image URL
+        # 'image': 'https://example.com/apple.jpg'  # Replace with an actual image URL
     },
     'orange': {
         'season': 'Winter (December to February)',
         'regions': 'Maharashtra, Andhra Pradesh, Punjab, Karnataka',
         'soil': 'Loamy soil, Alluvial soil',
-        'image': 'https://www.pexels.com/photo/close-up-of-fruits-in-bowl-327098/'  # Replace with an actual image URL
+        # 'image': 'https://example.com/orange.jpg'  # Replace with an actual image URL
     },
     'papaya': {
         'season': 'Throughout the year',
         'regions': 'Maharashtra, Gujarat, Tamil Nadu, West Bengal',
         'soil': 'Loamy soil, Alluvial soil',
-        'image': 'https://images7.alphacoders.com/376/thumb-1920-376682.jpg'  # Replace with an actual image URL
+        # 'image': 'https://example.com/papaya.jpg'  # Replace with an actual image URL
     },
     'coconut': {
         'season': 'Throughout the year',
         'regions': 'Kerala, Tamil Nadu, Karnataka, Andhra Pradesh',
         'soil': 'Sandy loam soil, Alluvial soil',
-        'image': 'https://www.pexels.com/photo/selective-focus-photo-of-coconuts-1424457/'  # Replace with an actual image URL
+        # 'image': 'https://example.com/coconut.jpg'  # Replace with an actual image URL
     },
     'cotton': {
         'season': 'Kharif (June to September)',
         'regions': 'Maharashtra, Gujarat, Andhra Pradesh, Punjab',
         'soil': 'Black soil, Sandy loam soil',
-        'image': 'https://wallpapercave.com/wp/wp2131890.jpg'  # Replace with an actual image URL
+        # 'image': 'https://example.com/cotton.jpg'  # Replace with an actual image URL
     },
     'jute': {
         'season': 'Kharif (June to September)',
         'regions': 'West Bengal, Bihar, Assam, Odisha',
         'soil': 'Alluvial soil',
-        'image': 'https://www.pexels.com/photo/close-up-of-a-texture-and-pattern-of-a-woven-jute-7717489/'  # Replace with an actual image URL
-    },
-     'coffee': {
+        # 'image': 'https://example.com/jute.jpg'  # Replace with an actual image URL
+        ),   
+    'coffee': {
         'season': 'Winter (November to March)',
         'regions': 'Karnataka, Kerala, Tamil Nadu',
         'soil': 'Well-drained loamy soil, Sandy loam soil',
-        'image': 'https://th.bing.com/th/id/OIP.TIK3xwcvcfqfDRGSE5kjygHaE7?rs=1&pid=ImgDetMain'  # Replace with an actual image URL
-     }
+        # 'image': 'https://example.com/coffee.jpg'  # Replace with an actual image URL
+    }
 }
 
 # Function to predict crop
@@ -181,18 +181,11 @@ def get_crop_info(crop_name):
     })
 
 # Streamlit Web App
-
-     
-# Streamlit Web App
 def main():
     st.set_page_config(page_title="Smart Crop and Fertilizer Recommendations", layout="wide")
 
     # Display the initial background image before prediction
-    try:
-        st.image("crop.jpg", use_column_width=True)  # Attempt to display the uploaded image as the background
-    except Exception as e:
-        st.error("Error loading background image.")
-        st.write(str(e))
+    st.image("image.png", use_column_width=True)  # Display the uploaded image as the background before prediction
 
     # Sidebar for inputs
     st.sidebar.header("Enter Crop Details")
@@ -236,9 +229,9 @@ def main():
             st.write(rotation_tips)
             st.markdown('</div>', unsafe_allow_html=True)
 
+           
+
+           
 # Run the web app
 if __name__ == '__main__':
     main()
-
-         
-
