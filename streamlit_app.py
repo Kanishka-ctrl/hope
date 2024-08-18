@@ -157,7 +157,7 @@ crop_info = {
         'regions': 'West Bengal, Bihar, Assam, Odisha',
         'soil': 'Alluvial soil',
         # 'image': 'https://example.com/jute.jpg'  # Replace with an actual image URL
-        ),   
+    },   
     'coffee': {
         'season': 'Winter (November to March)',
         'regions': 'Karnataka, Kerala, Tamil Nadu',
