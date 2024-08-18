@@ -163,7 +163,7 @@ crop_info = {
         'regions': 'Karnataka, Kerala, Tamil Nadu',
         'soil': 'Well-drained loamy soil, Sandy loam soil',
         'image': 'https://th.bing.com/th/id/OIP.TIK3xwcvcfqfDRGSE5kjygHaE7?rs=1&pid=ImgDetMain'  # Replace with an actual image URL
-    
+     }
 }
 
 # Function to predict crop
