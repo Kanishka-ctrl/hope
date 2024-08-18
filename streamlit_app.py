@@ -66,18 +66,6 @@ def predict_crop(nitrogen, phosphorus, potassium, temperature, humidity, ph, rai
     prediction = RF_Model_pkl.predict(np.array([nitrogen, phosphorus, potassium, temperature, humidity, ph, rainfall]).reshape(1, -1))
     return prediction[0]
 
-# Function to get online image of the predicted crop
-def get_online_image(crop_name):
-    crop_images = {
-        'rice': 'https://example.com/rice.jpg',
-        'maize': 'https://example.com/maize.jpg',
-        'chickpea': 'https://example.com/chickpea.jpg',
-        'kidneybeans': 'https://example.com/kidneybeans.jpg',
-        'pigeonpeas': 'https://example.com/pigeonpeas.jpg',
-        # Add more crops and URLs as needed
-    }
-    return crop_images.get(crop_name.lower(), 'https://example.com/default.jpg')
-
 # Streamlit Web App
 def main():
     st.set_page_config(page_title="Smart Crop and Fertilizer Recommendations", layout="wide")
@@ -86,7 +74,7 @@ def main():
     page_bg_img = '''
     <style>
     .stApp {
-        background-image: url("crop.jpg"); /* Replace with your background image URL */
+        background-image: url("crop.jpg"); /* Use the local image file */
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -143,8 +131,8 @@ def main():
         else:
             crop = predict_crop(nitrogen, phosphorus, potassium, temperature, humidity, ph, rainfall)
             
-            # Display crop image
-            st.image(get_online_image(crop), caption=f"Predicted Crop: {crop.capitalize()}", use_column_width=True)
+            # Display crop image using the local 'crop.jpg' file
+            st.image("crop.jpg", caption=f"Predicted Crop: {crop.capitalize()}", use_column_width=True)
 
             # Display crop and fertilizer recommendations in a card
             st.markdown('<div class="card">', unsafe_allow_html=True)
@@ -176,7 +164,6 @@ def main():
             st.subheader("Crop Distribution in Dataset")
             crop_counts = df['label'].value_counts()
             fig2, ax2 = plt.subplots()
-                        # Continue with the pie chart visualization
             ax2.pie(crop_counts, labels=crop_counts.index, autopct='%1.1f%%', startangle=140, colors=sns.color_palette('pastel'))
             ax2.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
             st.pyplot(fig2)
@@ -190,6 +177,8 @@ def main():
             ax3.scatter(temperature, humidity, color='red', s=100)  # Highlight the input values with a larger red dot
             ax3.set_xlabel('Temperature (°C)')
             ax3.set_ylabel('Humidity (%)')
+            ax3.set_xlabel('Temperature (°C)')
+            ax3.set_ylabel('Humidity (%)')
             ax3.set_title('Temperature vs Humidity')
             st.pyplot(fig3)
             st.markdown('</div>', unsafe_allow_html=True)
@@ -197,5 +186,3 @@ def main():
 # Run the web app
 if __name__ == '__main__':
     main()
-
-  
