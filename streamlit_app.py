@@ -174,4 +174,22 @@ def main():
             st.subheader("Crop Distribution in Dataset")
             crop_counts = df['label'].value_counts()
             fig2, ax2 = plt.subplots()
-            ax2.pie(crop_counts, labels=crop_counts.index
+                       # Continue with the pie chart visualization
+            ax2.pie(crop_counts, labels=crop_counts.index, autopct='%1.1f%%', startangle=140, colors=sns.color_palette('pastel'))
+            ax2.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+            st.pyplot(fig2)
+
+            # Visualization: Scatter plot for environmental factors
+            st.subheader("Environmental Factors vs Recommended Crop")
+            fig3, ax3 = plt.subplots()
+            sns.scatterplot(x=df['temperature'], y=df['humidity'], hue=df['label'], ax=ax3)
+            ax3.scatter(temperature, humidity, color='red')  # Highlight the input values
+            ax3.set_xlabel('Temperature (°C)')
+            ax3.set_ylabel('Humidity (%)')
+            ax3.set_title('Temperature vs Humidity')
+            st.pyplot(fig3)
+
+# Run the web app
+if __name__ == '__main__':
+    main()
+
