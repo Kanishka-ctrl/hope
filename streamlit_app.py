@@ -181,11 +181,18 @@ def get_crop_info(crop_name):
     })
 
 # Streamlit Web App
+
+     
+# Streamlit Web App
 def main():
     st.set_page_config(page_title="Smart Crop and Fertilizer Recommendations", layout="wide")
 
     # Display the initial background image before prediction
-    st.image("image.png", use_column_width=True)  # Display the uploaded image as the background before prediction
+    try:
+        st.image("image.png", use_column_width=True)  # Attempt to display the uploaded image as the background
+    except Exception as e:
+        st.error("Error loading background image.")
+        st.write(str(e))
 
     # Sidebar for inputs
     st.sidebar.header("Enter Crop Details")
@@ -229,11 +236,9 @@ def main():
             st.write(rotation_tips)
             st.markdown('</div>', unsafe_allow_html=True)
 
-      
-     
-
-         
-
 # Run the web app
 if __name__ == '__main__':
     main()
+
+         
+
