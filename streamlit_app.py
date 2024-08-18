@@ -70,53 +70,24 @@ def predict_crop(nitrogen, phosphorus, potassium, temperature, humidity, ph, rai
     prediction = RF_Model_pkl.predict(np.array([nitrogen, phosphorus, potassium, temperature, humidity, ph, rainfall]).reshape(1, -1))
     return prediction[0]
 
+# Function to get online image of the predicted crop
+def get_online_image(crop_name):
+    crop_images = {
+        'rice': 'https://www.pexels.com/photo/close-up-photo-of-white-rice-grains-4110251/',  # Replace with a 4K image URL
+        'maize': 'https://www.pexels.com/photo/person-holding-corn-from-its-tree-3307282/',  # Replace with a 4K image URL
+        'chickpea': 'https://images.unsplash.com/photo-1596188771903-b16e49d5b4e1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',  # Replace with a 4K image URL
+        'kidneybeans': 'https://images.unsplash.com/photo-1582227257150-7a2202d0d081?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',  # Replace with a 4K image URL
+        'pigeonpeas': 'https://images.unsplash.com/photo-1569159585160-381fdf6fce9b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',  # Replace with a 4K image URL
+        # Add more crops and URLs as needed
+    }
+    return crop_images.get(crop_name.lower(), 'https://via.placeholder.com/150')  # Placeholder for unknown crops
+
 # Streamlit Web App
 def main():
     st.set_page_config(page_title="Smart Crop and Fertilizer Recommendations", layout="wide")
 
-    # Set a general background image
-    page_bg_img = '''
-    <style>
-    .stApp {
-        background-image: url("crop.jpg"); /* Use the local image file */
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-    }
-    .sidebar .sidebar-content {
-        background-color: rgba(0, 0, 0, 0.6); /* Add transparency */
-        padding: 20px;
-        border-radius: 10px;
-    }
-    .st-header, .st-subheader {
-        text-shadow: 2px 2px 5px #000;
-    }
-    .stNumberInput>div>div>input {
-        background-color: rgba(255, 255, 255, 0.7);
-        color: #333;
-        border-radius: 5px;
-    }
-    .stButton>button {
-        background-color: #4CAF50;
-        color: white;
-        border-radius: 5px;
-        font-size: 1rem;
-        padding: 10px;
-        border: none;
-    }
-    .stButton>button:hover {
-        background-color: #45a049;
-    }
-    .card {
-        background-color: rgba(255, 255, 255, 0.85);
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-        margin-bottom: 20px;
-    }
-    </style>
-    '''
-    st.markdown(page_bg_img, unsafe_allow_html=True)
+    # Display the initial background image before prediction
+    st.image("image.png", use_column_width=True)  # Display the uploaded image as the background before prediction
 
     # Sidebar for inputs
     st.sidebar.header("Enter Crop Details")
@@ -135,8 +106,8 @@ def main():
         else:
             crop = predict_crop(nitrogen, phosphorus, potassium, temperature, humidity, ph, rainfall)
             
-            # Display crop image using the local 'crop.jpg' file
-            st.image("crop.jpg", caption=f"Predicted Crop: {crop.capitalize()}", use_column_width=True)
+            # Display the online crop image after prediction
+            st.image(get_online_image(crop), caption=f"Predicted Crop: {crop.capitalize()}", use_column_width=True)
 
             # Display crop and fertilizer recommendations in a card
             st.markdown('<div class="card">', unsafe_allow_html=True)
@@ -162,15 +133,6 @@ def main():
             ax.set_title('Nutrient Levels for Recommended Crop')
             st.pyplot(fig)
             st.markdown('</div>', unsafe_allow_html=True)
-            
-            # Visualization: Pie chart of crop distribution in the dataset
-            st.markdown('<div class="card">', unsafe_allow_html=True)
-            st.subheader("Crop Distribution in Dataset")
-            crop_counts = df['label'].value_counts()
-            fig2, ax2 = plt.subplots()
-            ax2.pie(crop_counts, labels=crop_counts.index, autopct='%1.1f%%', startangle=140, colors=sns.color_palette('pastel'))
-            ax2.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
-            st.pyplot(fig2)
             st.markdown('</div>', unsafe_allow_html=True)
 
             # Visualization: Scatter plot for environmental factors
@@ -189,4 +151,4 @@ def main():
 if __name__ == '__main__':
     main()
 
-       
+    
