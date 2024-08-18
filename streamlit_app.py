@@ -3,6 +3,8 @@ import numpy as np
 import pandas as pd
 import pickle
 import os
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 # Load the dataset
 df = pd.read_csv('Crop_recommendation.csv')
@@ -30,7 +32,6 @@ RF_Model_pkl = pickle.load(open('RF.pkl', 'rb'))
 
 # Custom Fertilizer Recommendations
 def fertilizer_recommendation(crop, nitrogen, phosphorus, potassium):
-    # Example: Dynamic adjustment based on nutrient levels
     if crop == 'rice':
         if nitrogen < 50:
             return "Urea, DAP - Increase Urea due to low nitrogen levels."
@@ -47,7 +48,6 @@ def fertilizer_recommendation(crop, nitrogen, phosphorus, potassium):
         return "Urea, SSP, MOP - Apply MOP at the flowering stage."
     elif crop == 'pigeonpeas':
         return "SSP, Urea, MOP - Balanced application during growth."
-    # Add more crop-specific logic as needed
     else:
         return "Standard Fertilizer Recommendation for your crop."
 
@@ -58,7 +58,6 @@ crop_rotation_tips = {
     'chickpea': "Follow chickpea with cereal crops like wheat or barley to balance nutrient usage.",
     'kidneybeans': "Rotate kidney beans with cereal crops or root vegetables to prevent soil depletion.",
     'pigeonpeas': "Pigeon peas can be rotated with cotton or millet to break the pest and disease cycle.",
-    # Add more crop-specific rotation tips
     'default': "Consider rotating with a legume or cereal crop to maintain soil health."
 }
 
@@ -69,7 +68,6 @@ def predict_crop(nitrogen, phosphorus, potassium, temperature, humidity, ph, rai
 
 # Function to load and display an image of the predicted crop
 def show_crop_image(crop_name):
-    # Assuming we have a directory named 'crop_images' with images named as 'crop_name.jpg'
     image_path = os.path.join('crop_images', crop_name.lower()+'.jpg')
     if os.path.exists(image_path):
         st.image(image_path, caption=f"Recommended crop: {crop_name.capitalize()}", use_column_width=True)
@@ -104,6 +102,8 @@ def main():
             font-family: 'Arial', sans-serif;
             color: #2c6e49;
             font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 20px;
         }
         .st-subheader {
             color: #4CAF50;
@@ -144,21 +144,34 @@ def main():
             st.error("Please fill in all input fields with valid values before predicting.")
         else:
             crop = predict_crop(nitrogen, phosphorus, potassium, temperature, humidity, ph, rainfall)
-            st.header(f"Recommended Crop: {crop.capitalize()}")
             
-            # Show Fertilizer Recommendation
+            # Display crop image
+            st.image('/mnt/data/image.png', use_column_width=True)
+            
+            # Display crop and fertilizer recommendations
+            st.header(f"Recommended Crop: {crop.capitalize()}")
             st.subheader("Fertilizer Recommendation")
             fertilizer = fertilizer_recommendation(crop, nitrogen, phosphorus, potassium)
             st.write(fertilizer)
             
-            # Show Crop Rotation Tips
+            # Display Crop Rotation Tips
             st.subheader("Crop Rotation Tips")
             rotation_tips = get_crop_rotation_tips(crop)
             st.write(rotation_tips)
             
             # Show crop image if available
             show_crop_image(crop)
-
-# Run the web app
-if __name__ == '__main__':
-    main()
+            
+            # Visualization: Bar chart of nutrient levels
+            st.subheader("Nutrient Levels")
+            fig, ax = plt.subplots()
+            ax.bar(['Nitrogen', 'Phosphorus', 'Potassium'], [nitrogen, phosphorus, potassium], color=['#FF6347', '#FFD700', '#32CD32'])
+            ax.set_ylabel('Level')
+            ax.set_title('Nutrient Levels for Recommended Crop')
+            st.pyplot(fig)
+            
+            # Visualization: Pie chart of crop distribution in the dataset
+            st.subheader("Crop Distribution in Dataset")
+            crop_counts = df['label'].value_counts()
+            fig2, ax2 = plt.subplots()
+            ax2.pie(crop_counts, labels=crop_counts.index
