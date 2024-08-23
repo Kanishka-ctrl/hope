@@ -190,7 +190,7 @@ def main():
 
     # Display the initial background image before prediction
     try:
-        st.image("logo.jpg", use_column_width=True)  # Attempt to display the uploaded image as the background
+        st.image("crop.jpg", use_column_width=True)  # Attempt to display the uploaded image as the background
     except Exception as e:
         st.error("Error loading background image.")
         st.write(str(e))
